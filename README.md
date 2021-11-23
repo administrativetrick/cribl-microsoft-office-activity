@@ -1,4 +1,4 @@
-# cribl-office-activity-events
+# cribl-microsoft-office-activity-events
 This pack is targeted for Collection and Processing of Office 365 Activity and Azure Events. Every time we solve interesting use cases our intent is to add them to this knowledge pack.
 
 # Got a Problem?
