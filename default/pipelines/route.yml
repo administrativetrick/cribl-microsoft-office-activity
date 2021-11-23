@@ -1,0 +1,57 @@
+id: default
+groups: {}
+routes:
+  - id: default
+    name: azuread
+    final: true
+    disabled: false
+    pipeline: AzureAD
+    description: ""
+    clones: []
+    filter: /^.*AzureActiveDirectory.*/.test(Workload)
+    output: default
+  - id: ysKmH0
+    name: o365exchange
+    final: true
+    disabled: false
+    pipeline: o365exchange
+    description: ""
+    clones: []
+    filter: /^.*Exchange.*/.test(Workload)
+    output: default
+  - id: G2kh1G
+    name: o365sharepoint
+    final: true
+    disabled: false
+    pipeline: o365sharepoint
+    description: ""
+    clones: []
+    filter: /^.*SharePoint.*/.test(Workload)
+    output: default
+  - id: s2plIm
+    name: o365onedrive
+    final: true
+    disabled: false
+    pipeline: o365sharepoint
+    description: ""
+    clones: []
+    filter: /^.*OneDrive.*/.test(Workload)
+    output: default
+  - id: g7wbiO
+    name: o365general
+    final: true
+    disabled: false
+    pipeline: o365general
+    description: ""
+    clones: []
+    filter: /^MicrosoftTeam|SecurityComplianceCenter|PublicEndpoint|PowerBI|MicrosoftForms|SkypeForBusiness/.test(Workload)
+    output: default
+  - id: wIGKtN
+    name: default
+    final: true
+    disabled: false
+    pipeline: main
+    description: ""
+    clones: []
+    filter: "true"
+    output: default

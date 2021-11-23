@@ -1,0 +1,77 @@
+output: default
+groups:
+  XXvFFc:
+    name: JSON
+    description: Extract fields from top level fields and send back to _raw as a JSON string
+    disabled: false
+    index: 4
+asyncFuncTimeout: 1000
+functions:
+  - id: regex_extract
+    filter: "true"
+    disabled: null
+    conf:
+      source: source
+      iterations: 100
+      overwrite: false
+      regex: /\$(?<source_collector>audit_[^\$]*)\$/
+  - id: comment
+    filter: "true"
+    disabled: null
+    conf:
+      comment: Set index, source, and sourcetype. Enable if sending to Splunk
+  - id: eval
+    filter: "true"
+    disabled: false
+    conf:
+      add:
+        - name: index
+          value: '"o365"'
+        - name: source
+          value: "'crbl:o365:api:' + source_collector"
+        - name: sourcetype
+          value: "'o365:activity:' + Workload.toLowerCase()"
+      keep: []
+  - id: comment
+    filter: "true"
+    disabled: false
+    conf:
+      comment: "Reserialize JSON Object and remove null values, then Extract fields
+        from top level fields and send back to _raw as a JSON string, "
+  - id: serde
+    filter: "true"
+    disabled: false
+    conf:
+      mode: reserialize
+      type: json
+      srcField: _raw
+      dstField: _raw
+      fieldFilterExpr: (value !== "") && value !== null
+    groupId: XXvFFc
+  - id: serde
+    filter: "true"
+    disabled: false
+    conf:
+      mode: extract
+      type: json
+      srcField: ""
+      cleanFields: false
+      fields: []
+      keep:
+        - "*"
+      dstField: _raw
+      remove: []
+    groupId: XXvFFc
+  - id: comment
+    filter: "true"
+    disabled: null
+    conf:
+      comment: Enable Drop or Keep - (Default Drop)
+  - id: eval
+    filter: "true"
+    disabled: true
+    conf:
+      keep: []
+      remove:
+        - "*"
+description: Azure AD Activity Logs
