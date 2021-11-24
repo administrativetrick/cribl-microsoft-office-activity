@@ -1,0 +1,18 @@
+zpuz7n:
+  sampleName: AzureAD_20211109-121503.log
+  ttl: 0
+  created: 1636489369167
+  size: 12700
+  numEvents: 3
+keMj6v:
+  sampleName: Office_Exchange_Activity_20211109-122057.log
+  ttl: 0
+  created: 1636490338962
+  size: 6390
+  numEvents: 3
+haD3u6:
+  sampleName: Office_Activity_general_capture_20211123-141905.log
+  ttl: 0
+  created: 1637706173649
+  size: 3480
+  numEvents: 1
